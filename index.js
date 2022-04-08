@@ -4,10 +4,7 @@ const port = 3000;
 
 app.use(express.json())
 
-// app.use("/", express.static("public"))
-
-
-const users = [
+let users = [
     {
         name: "Tony",
         age: 44,
@@ -34,31 +31,51 @@ const users = [
     }
 ]
 
-
 app.get("/api/users", (req, res) => { 
     if(users.length === 0){
 res.status(404).send('Users not found')
     } else {
-        res.json(users)
+        res.send(users)
     }
 })
 
 app.post("/api/users", (req, res) => {
     users.push(req.body)
-    res.status(201).send(users)
-})
-
-app.put("api/users/:id", (req, res) => {
-
-})
-
-app.delete("/api/users/:id", function(req, res) {
-    const itemIndex = users.findIndex(({ id }) => id == req.params.id);
-    if (itemIndex >= 0) {
-      users.splice(itemIndex, 1);
-    }
-    res.send('User deleted')
+    res.status(201).send("User added")
 });
+
+app.put("/api/users/:id", (req, res) => {
+    let {id} = req.params; 
+    let currentUser = users.find((user) => {
+return user.id == id; 
+    })
+    if(!currentUser){
+        res.status(404).send('ID not found');
+    } else {
+   let updatedUsers = users.map((user) => {
+ if(user.id == id){
+            return req.body;
+        } else {
+        return user;
+        }
+    });
+    users = updatedUsers;
+res.send("User updated");
+}});
+
+app.delete("/api/users/:id", (req, res) => {
+let { id } = req.params; 
+let current = users.find((user) => {
+return user.id == id; 
+})
+if(!current){
+    res.status(404).send('ID not found');
+return
+} else {
+    let newList = users.filter((user) => user.id != id);
+ users = newList;
+    res.send('User deleted');
+}});
   
 
 app.listen(port, () => { console.log("App is now running on port: " + port) })
