@@ -2,7 +2,7 @@
 
 ## Beskrivning
 
-Jag har skapat ett REST-API där man kan redigera, ta bort, lägga till och hämta all data som i detta fallet är användare. Man gör det genom att använda REST client filen, index.rest. Om ingen data kan hittas visas ett 404 felmeddelande.
+Jag har skapat ett REST-API där man kan redigera, ta bort, lägga till och hämta all data som i detta fallet är användare. Man gör det genom att använda REST client filen, index.rest. Om ingen data kan hittas visas ett 404 felmeddelande. När man lägger till en ny användare genereras ett random id.
 
 ## Uppfyllda krav
 

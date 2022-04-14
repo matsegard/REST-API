@@ -4,6 +4,10 @@ const port = 3000;
 
 app.use(express.json())
 
+function getNewId() {
+    return Math.floor((1 + Math.random()) * 0x10000) .toString(16) .substring(1); 
+}
+
 let users = [
     {
         name: "Tony",
@@ -34,7 +38,11 @@ res.status(404).send('Users not found')
 })
 
 app.post("/api/users", (req, res) => {
-    users.push(req.body)
+    let newUsers = users;
+    let newPerson = req.body;
+    newPerson.id = getNewId();
+    newUsers.push(newPerson);
+    // users.push(req.body)
     res.status(201).send("User added")
 });
 
