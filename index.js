@@ -22,12 +22,6 @@ let users = [
         age: 33,
         occupation: "Doctor",
         id: 3
-    },
-    {
-        name: "Emil",
-        age: 25,
-        occupation: "Carpenter",
-        id: 4
     }
 ]
 
