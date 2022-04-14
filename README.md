@@ -27,3 +27,5 @@ npm start
 ## Länk
 
 [Link to repo](https://github.com/matsegard/REST-API)
+
+Made by: [Erik Matsegård](https://github.com/matsegard)
